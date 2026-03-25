@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Arda.Core/Arda.Core.csproj" />
+    <Project Path="src/Arda.ECS/Arda.ECS.csproj" />
+    <Project Path="src/Arda.Renderer.OpenGL/Arda.Renderer.OpenGL.csproj" />
+    <Project Path="src/Arda.Renderer/Arda.Renderer.csproj" />
+    <Project Path="src/Arda.Windowing/Arda.Windowing.csproj" />
+    <Project Path="src/Sandbox/Sandbox.csproj" />
+  </Folder>
+</Solution>
