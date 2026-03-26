@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\Arda.Core\Arda.Core.csproj" />
+    <ProjectReference Include="..\Arda.ECS\Arda.ECS.csproj" />
     <ProjectReference Include="..\Arda.Renderer\Arda.Renderer.csproj" />
   </ItemGroup>
 

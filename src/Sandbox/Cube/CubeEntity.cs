@@ -1,6 +1,6 @@
+using Arda.Core;
 using Arda.ECS;
 using Arda.Renderer;
-using Arda.Renderer.OpenGL;
 using Arda.Windowing;
 
 static class CubeEntity
@@ -99,7 +99,9 @@ static class CubeEntity
         -0.5f,  0.5f,  0.5f,  0, 1, 0,
     ];
 
-    public static GameObject Create(Scene scene, SilkWindow window, OpenGLContext ctx)
+    public static GameObject Create(
+        Scene scene, SilkWindow window,
+        System.Numerics.Vector3 position, System.Numerics.Vector3 color)
     {
         var vbo = RendererFactory.CreateVertexBuffer(Vertices());
         vbo.Layout = new BufferLayout([
@@ -112,14 +114,16 @@ static class CubeEntity
         var shader = RendererFactory.CreateShader(VertSrc, FragSrc);
 
         var cube = scene.CreateGameObject("Cube");
+        cube.Transform.Position = position;
 
-        var rotator = cube.AddComponent<CubeRotator>();
-        rotator.BindInput(window);
+        CubeRotator.BindInput(window);
+        cube.AddComponent<CubeRotator>();
 
-        var renderer = cube.AddComponent<CubeMeshRenderer>();
-        renderer.Setup(ctx, va, 36, shader);
-        renderer.ObjectColor = new(0.49f, 0.29f, 0.78f);
-        renderer.CameraPos   = new(0f, 1.2f, 3f);
+        var renderer = cube.AddComponent<MeshRenderer>();
+        renderer.VertexArray = va;
+        renderer.VertexCount = 36;
+        renderer.Shader = shader;
+        renderer.ObjectColor = color;
 
         return cube;
     }

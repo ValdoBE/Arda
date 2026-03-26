@@ -1,3 +1,5 @@
+using System.Numerics;
+using Arda.Core;
 using Arda.ECS;
 using Arda.Renderer;
 using Arda.Renderer.OpenGL;
@@ -13,16 +15,24 @@ window.Load += () =>
     ctx.Initialize();
     RendererFactory.RegisterBackend(new OpenGLRendererBackend(ctx.GL), RendererAPI.OpenGL);
 
-    CubeEntity.Create(scene, window, ctx);
+    // Camera
+    OrbitCameraController.BindInput(window);
+    var cameraGo = scene.CreateGameObject("MainCamera");
+    cameraGo.AddComponent<Camera>();
+    cameraGo.AddComponent<OrbitCameraController>();
+
+    // Cubes
+    CubeEntity.Create(scene, window, new Vector3(-1.5f, 0f, 0f), new Vector3(0.49f, 0.29f, 0.78f));
+    CubeEntity.Create(scene, window, new Vector3( 1.5f, 0f, 0f), new Vector3(0.29f, 0.78f, 0.49f));
 };
 
 window.FixedUpdate += dt => scene.FixedUpdate((float)dt);
 window.Update      += dt => scene.Update((float)dt);
 
-window.Render += dt =>
+window.Render += _ =>
 {
     ctx!.Clear(0.08f, 0.08f, 0.10f);
-    scene.Render((float)dt);
+    RenderSystem.Draw(scene, ctx);
 };
 
 window.Closing += () =>

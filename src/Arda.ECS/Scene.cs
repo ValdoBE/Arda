@@ -35,6 +35,27 @@ public class Scene
             _behaviours[i].Render(dt);
     }
 
+    public T? FindComponent<T>() where T : Component
+    {
+        foreach (var go in _gameObjects)
+        {
+            var c = go.GetComponent<T>();
+            if (c is not null) return c;
+        }
+        return null;
+    }
+
+    public List<T> FindAll<T>() where T : Component
+    {
+        var results = new List<T>();
+        foreach (var go in _gameObjects)
+        {
+            var c = go.GetComponent<T>();
+            if (c is not null) results.Add(c);
+        }
+        return results;
+    }
+
     public void Destroy()
     {
         foreach (var mb in _behaviours)

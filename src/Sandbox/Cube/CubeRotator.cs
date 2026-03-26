@@ -4,12 +4,15 @@ using Silk.NET.Input;
 
 class CubeRotator : MonoBehaviour
 {
-    private readonly HashSet<Key> _keysHeld = new();
+    private static readonly HashSet<Key> _keysHeld = new();
+    private static bool _bound;
 
     public float Speed = 90f;
 
-    public void BindInput(SilkWindow window)
+    public static void BindInput(SilkWindow window)
     {
+        if (_bound) return;
+        _bound = true;
         window.KeyDown += key => _keysHeld.Add(key);
         window.KeyUp   += key => _keysHeld.Remove(key);
     }
