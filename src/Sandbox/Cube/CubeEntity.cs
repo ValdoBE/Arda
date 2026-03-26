@@ -1,5 +1,6 @@
-using Arda.Core;
+using Arda.Core.Components;
 using Arda.ECS;
+using Arda.ECS.Core;
 using Arda.Renderer;
 using Arda.Windowing;
 
@@ -124,6 +125,8 @@ static class CubeEntity
         renderer.VertexCount = 36;
         renderer.Shader = shader;
         renderer.ObjectColor = color;
+
+        cube.AddComponent<Clickable>();
 
         return cube;
     }

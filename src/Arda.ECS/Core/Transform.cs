@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace Arda.ECS;
+namespace Arda.ECS.Core;
 
 public class Transform : Component
 {

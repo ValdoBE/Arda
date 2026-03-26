@@ -1,6 +1,6 @@
 using System.Numerics;
-using Arda.Core;
-using Arda.ECS;
+using Arda.Core.Components;
+using Arda.ECS.Core;
 using Arda.Windowing;
 using Silk.NET.Input;
 
@@ -22,7 +22,6 @@ class OrbitCameraController : MonoBehaviour
     public float MaxDistance = 50f;
 
     private static bool _bound;
-    private static bool _leftHeld;
     private static bool _middleHeld;
     private static bool _shiftHeld;
     private static Vector2 _lastMousePos;
@@ -42,14 +41,12 @@ class OrbitCameraController : MonoBehaviour
 
         mouse.MouseDown += (_, btn) =>
         {
-            if (btn == MouseButton.Left)   _leftHeld = true;
             if (btn == MouseButton.Middle)  _middleHeld = true;
             _lastMousePos = new Vector2(mouse.Position.X, mouse.Position.Y);
         };
 
         mouse.MouseUp += (_, btn) =>
         {
-            if (btn == MouseButton.Left)   _leftHeld = false;
             if (btn == MouseButton.Middle)  _middleHeld = false;
         };
 
@@ -73,8 +70,8 @@ class OrbitCameraController : MonoBehaviour
         _mouseDelta = Vector2.Zero;
         _scrollDelta = 0f;
 
-        bool panning = _middleHeld || (_leftHeld && _shiftHeld);
-        bool orbiting = _leftHeld && !_shiftHeld;
+        bool panning = _middleHeld && !_shiftHeld;
+        bool orbiting = _middleHeld && _shiftHeld;
 
         if (orbiting)
         {

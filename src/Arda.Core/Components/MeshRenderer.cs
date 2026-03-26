@@ -1,8 +1,8 @@
 using System.Numerics;
-using Arda.ECS;
+using Arda.ECS.Core;
 using Arda.Renderer;
 
-namespace Arda.Core;
+namespace Arda.Core.Components;
 
 public class MeshRenderer : Component
 {

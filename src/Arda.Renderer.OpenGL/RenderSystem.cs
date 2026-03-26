@@ -1,6 +1,7 @@
 using System.Numerics;
-using Arda.Core;
+using Arda.Core.Components;
 using Arda.ECS;
+using Arda.ECS.Core;
 using Silk.NET.OpenGL;
 
 namespace Arda.Renderer.OpenGL;

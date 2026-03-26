@@ -1,7 +1,7 @@
 using System.Numerics;
-using Arda.ECS;
+using Arda.ECS.Core;
 
-namespace Arda.Core;
+namespace Arda.Core.Components;
 
 public class Camera : Component
 {

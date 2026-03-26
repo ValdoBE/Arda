@@ -1,4 +1,4 @@
-namespace Arda.ECS;
+namespace Arda.ECS.Core;
 
 public abstract class Component
 {

@@ -1,4 +1,4 @@
-using Arda.ECS;
+using Arda.ECS.Core;
 using Arda.Windowing;
 using Silk.NET.Input;
 

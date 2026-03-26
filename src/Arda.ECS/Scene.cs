@@ -1,3 +1,5 @@
+using Arda.ECS.Core;
+
 namespace Arda.ECS;
 
 public class Scene
